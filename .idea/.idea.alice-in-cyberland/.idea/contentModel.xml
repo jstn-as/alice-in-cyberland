@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\justi\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\justi\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_alice-in-cyberland.-1563832175.00" t="ExcludeRecursive" />
+    <e p="D:\Documents\Repos\alice-in-cyberland" t="IncludeRecursive">
+      <e p="alice-in-cyberland.sln" t="IncludeFlat" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="Cam" t="Include">
+            <e p="CameraRotate.cs" t="Include" />
+            <e p="TransformFollow.cs" t="Include" />
+          </e>
+          <e p="CursorLock.cs" t="Include" />
+          <e p="NoiseCreator.cs" t="Include" />
+          <e p="Player" t="Include">
+            <e p="GroundCheck.cs" t="Include" />
+            <e p="PlayerAiming.cs" t="Include" />
+            <e p="PlayerAnimation.cs" t="Include" />
+            <e p="PlayerMovement.cs" t="Include" />
+          </e>
+          <e p="SyncRotate.cs" t="Include" />
+          <e p="SyncYaw.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
