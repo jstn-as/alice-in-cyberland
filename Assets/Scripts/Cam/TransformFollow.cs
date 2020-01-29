@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Cam
@@ -9,7 +8,6 @@ namespace Cam
         [SerializeField] private Transform _target;
         [SerializeField] private Vector3 _offset;
         [SerializeField] private Vector2 _zoomBounds;
-        [SerializeField, Range(0, 1)] private float _speed;
         [SerializeField] private float _zoomSpeed;
         [SerializeField] private InputActionReference _zoomAction;
         private float _currentZoom;
@@ -35,20 +33,28 @@ namespace Cam
         }
         private void LateUpdate()
         {
-            var lerpPosition = Vector3.Lerp(transform.position, GetTargetPosition(), _speed);
             // Update the current position.
-            transform.position = lerpPosition;
+            transform.position = GetTargetPosition();
         }
 
         private Vector3 GetTargetPosition()
         {
-            // Offset the target position.
+            // Get the target position.
             var t = transform;
             var targetX = t.right * _offset.x;
             var targetY = t.up * _offset.y;
             var targetZ = (_offset.z + _currentZoom) * t.forward;
             var offsetPosition = targetX + targetY + targetZ;
-            return _target.position + offsetPosition;
+            var position = _target.position;
+            var targetPosition = position + offsetPosition;
+            
+            var ray = new Ray(position, offsetPosition);
+            if (Physics.Raycast(ray, out var hit, offsetPosition.magnitude, 9))
+            {
+                targetPosition = hit.point - offsetPosition.normalized * 0.1f;
+            }
+            
+            return targetPosition;
         }
     }
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02147a4720d74a01b42da8f2d62f75cb, type: 3}
+  m_Name: UZI
+  m_EditorClassIdentifier: 
+  _name: UZI
+  _ammoType: 1
+  _prefab: {fileID: 1984303358989014578, guid: b59f5db802d7f0f429f347c7aa5d8be0, type: 3}
+  _damage: 1

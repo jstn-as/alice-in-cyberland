@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: ac480bcba4446e34fa5e13ba248db716
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 25
   internalIDToNameTable:
   - first:
       74: -203655887218126122
@@ -37,7 +37,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle
       takeName: mixamo.com
-      internalID: 0
+      internalID: -203655887218126122
       firstFrame: 0
       lastFrame: 499
       wrapMode: 0
@@ -51,7 +51,7 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
@@ -70,7 +70,6 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

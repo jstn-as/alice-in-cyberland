@@ -14,14 +14,26 @@
           </e>
           <e p="CursorLock.cs" t="Include" />
           <e p="NoiseCreator.cs" t="Include" />
+          <e p="Outfit" t="Include">
+            <e p="OutfitManager.cs" t="Include" />
+            <e p="OutfitObject.cs" t="Include" />
+          </e>
           <e p="Player" t="Include">
             <e p="GroundCheck.cs" t="Include" />
             <e p="PlayerAiming.cs" t="Include" />
             <e p="PlayerAnimation.cs" t="Include" />
+            <e p="PlayerInventory.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
+            <e p="PlayerWeapon.cs" t="Include" />
           </e>
           <e p="SyncRotate.cs" t="Include" />
           <e p="SyncYaw.cs" t="Include" />
+          <e p="Weapon" t="Include">
+            <e p="AmmoType.cs" t="Include" />
+            <e p="HeldType.cs" t="Include" />
+            <e p="Projectile.cs" t="Include" />
+            <e p="WeaponObject.cs" t="Include" />
+          </e>
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

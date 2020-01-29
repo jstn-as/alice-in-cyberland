@@ -54,8 +54,8 @@ namespace Player
 
         private void Start()
         {
-            SetTrigger(Fall);
-            SetTrigger(Idle);
+            _animator.SetTrigger(Fall);
+            _animator.SetTrigger(Idle);
         }
 
         private void Update()

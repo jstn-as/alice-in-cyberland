@@ -5,7 +5,7 @@ namespace Player
 {
     public class GroundCheck : MonoBehaviour
     {
-        private List<Collider> _collidedObjects = new List<Collider>();
+        private readonly List<Collider> _collidedObjects = new List<Collider>();
 
         public bool IsGrounded()
         {
@@ -21,6 +21,11 @@ namespace Player
         {
             if (!_collidedObjects.Contains(other)) return;
             _collidedObjects.Remove(other);
+        }
+
+        public void Clear()
+        {
+            _collidedObjects.Clear();
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Player
             _rb = GetComponent<Rigidbody>();
             _playerAnimation = GetComponent<PlayerAnimation>();
             _moveAction.action.performed += context => Move(context.ReadValue<Vector2>());
-            _jumpAction.action.performed += delegate { Jump(); };
+            _jumpAction.action.performed += delegate { SetJump(true); };
             _sprintAction.action.started += delegate { SetSprint(true); };
             _sprintAction.action.canceled += delegate { SetSprint(false); };
             _crouchAction.action.started += delegate { SetCrouch(true); };
@@ -56,11 +56,10 @@ namespace Player
             _playerAnimation.SetMovement(_moveDirection);
         }
 
-        private void Jump()
+        private void SetJump(bool isJump)
         {
-            _isJump = true;
+            _isJump = isJump;
         }
-
         private void SetSprint(bool newSprint)
         {
             _isRunning = newSprint;
@@ -95,14 +94,15 @@ namespace Player
             if (_isJump && _jumpCount < _maxJumps)
             {
                 _jumpCount++;
+                _groundCheck.Clear();
                 _isCrouching = false;
-                _isJump = false;
                 var velocity = _rb.velocity;
                 velocity = Vector3.right * velocity.x + Vector3.forward * velocity.z;
                 _rb.velocity = velocity;
                 var jumpForce = Vector3.up * _speed.y;
                 _rb.AddForce(jumpForce);
             }
+            _isJump = false;
         }
     }
 }
