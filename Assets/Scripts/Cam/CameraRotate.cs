@@ -32,7 +32,7 @@ namespace Cam
 
         private void Look(Vector2 direction)
         {
-            _angle.x += direction.y * _sensitivity.y;
+            _angle.x -= direction.y * _sensitivity.y;
             _angle.x = Mathf.Clamp(_angle.x, -_pitchBound, _pitchBound);
             _angle.y += direction.x * _sensitivity.x;
         }

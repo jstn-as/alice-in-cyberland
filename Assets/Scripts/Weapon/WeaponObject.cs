@@ -9,7 +9,6 @@ namespace Weapon
         [SerializeField] private AmmoType _ammoType;
         [SerializeField] private GameObject _prefab;
         [SerializeField] private GameObject _projectile;
-        [SerializeField] private int _damage;
         [SerializeField] private float _fireRate;
         [SerializeField] private int _magSize;
 
@@ -21,6 +20,11 @@ namespace Weapon
         public GameObject GetProjectile()
         {
             return _projectile;
+        }
+
+        public float GetFireRate()
+        {
+            return _fireRate;
         }
     }
 }

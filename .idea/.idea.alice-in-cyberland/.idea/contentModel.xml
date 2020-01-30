@@ -13,6 +13,7 @@
             <e p="TransformFollow.cs" t="Include" />
           </e>
           <e p="CursorLock.cs" t="Include" />
+          <e p="Health.cs" t="Include" />
           <e p="NoiseCreator.cs" t="Include" />
           <e p="Outfit" t="Include">
             <e p="OutfitManager.cs" t="Include" />

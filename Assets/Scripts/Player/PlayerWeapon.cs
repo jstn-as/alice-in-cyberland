@@ -13,6 +13,7 @@ namespace Player
         private Transform _projectileSpawn;
         private GameObject _weaponPrefab;
         private PlayerInventory _inventory;
+        private float _timeSinceShot;
         private void SwitchWeapon(int newWeapon)
         {
             Destroy(_weaponPrefab);
@@ -24,7 +25,6 @@ namespace Player
                 // Find a child transform with the right tag.
                 if (!child.CompareTag("Projectile")) continue;
                 _projectileSpawn = child;
-                print(_projectileSpawn);
                 break;
             }
         }
@@ -46,15 +46,20 @@ namespace Player
             SwitchWeapon(0);
         }
 
+        private void Update()
+        {
+            _timeSinceShot += Time.deltaTime;
+        }
         private void Shoot()
         {
-            // Spawn the projectile.
             var weapon = _inventory.GetWeapon(_currentWeapon);
+            if (_timeSinceShot < weapon.GetFireRate()) return;
+            _timeSinceShot = 0;
+            // Spawn the projectile.
             var projectilePrefab = weapon.GetProjectile();
             var projectile = Instantiate(projectilePrefab, _projectileSpawn.position, Quaternion.identity);
             // Point the projectile at the cursor.
             projectile.transform.rotation = _camera.transform.rotation;
-            print("done");
         }
     }
 }

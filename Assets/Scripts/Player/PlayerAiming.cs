@@ -9,6 +9,7 @@ namespace Player
         [SerializeField] private Vector3 _offset;
         [SerializeField] private Transform _camera;
         [SerializeField, Range(0, 1)] private float _speed;
+        [SerializeField] private PlayerWeapon _playerWeapon;
         private Quaternion _currentRotation;
         private bool _isAiming;
         private Animator _animator;
@@ -51,6 +52,7 @@ namespace Player
         private void SetAim(bool newAim)
         {
             _isAiming = newAim;
+            _playerWeapon.enabled = _isAiming;
         }
     }
 }

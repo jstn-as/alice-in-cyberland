@@ -5,6 +5,7 @@ namespace Weapon
 {
     public class Projectile : MonoBehaviour
     {
+        [SerializeField] private int _damage;
         [SerializeField] private float _speed;
         [SerializeField] private float _maxLifetime;
         private float _lifetime;
@@ -27,6 +28,11 @@ namespace Weapon
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.CompareTag("Enemy"))
+            {
+                var health = other.GetComponent<Health>();
+                health.ChangeHealth(-_damage);
+            }
             Destroy(gameObject);
         }
     }
