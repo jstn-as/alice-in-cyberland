@@ -21,7 +21,6 @@ public class Health : MonoBehaviour
     public void ChangeHealth(int amount)
     {
         _currentHealth += amount;
-        print(_currentHealth);
         _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
         if (_currentHealth <= 0)
         {

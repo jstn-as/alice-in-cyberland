@@ -59,7 +59,15 @@ namespace Player
             var projectilePrefab = weapon.GetProjectile();
             var projectile = Instantiate(projectilePrefab, _projectileSpawn.position, Quaternion.identity);
             // Point the projectile at the cursor.
-            projectile.transform.rotation = _camera.transform.rotation;
+            var forward = _camera.forward;
+            var position = _camera.position;
+            var ray = new Ray(position, forward);
+            var targetPoint = position + forward * 100;
+            if (Physics.Raycast(ray, out var hit, 100f))
+            {
+                targetPoint = hit.point;
+            }
+            projectile.transform.LookAt(targetPoint);
         }
     }
 }

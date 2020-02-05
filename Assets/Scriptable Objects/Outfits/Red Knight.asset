@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Red Knight
   m_EditorClassIdentifier: 
   _bodyMaterial: {fileID: 2100000, guid: 2079e8b30cf23f74596394bbbbb8d1ed, type: 2}
-  _glowMaterial: {fileID: 2100000, guid: 17042927e2afb6a49bd73ce8dccc47d8, type: 2}
+  _glowMaterial: {fileID: 2100000, guid: b3f066fa9adce764cbffcbd6a6568025, type: 2}

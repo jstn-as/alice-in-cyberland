@@ -27,8 +27,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24755f90a5414a9583bce27e07615455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
-  _currentHealth: 10
+  _maxHealth: 3
+  _currentHealth: 3
   _glowRenderer: {fileID: 4787992300010056625}
 --- !u!1001 &1523666255372246637
 PrefabInstance:
@@ -102,6 +102,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2929736950991424036, guid: 1745295a2c043ae4384c5d8eea839cd4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b3f066fa9adce764cbffcbd6a6568025, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1745295a2c043ae4384c5d8eea839cd4, type: 3}
 --- !u!1 &7351224193498285924 stripped

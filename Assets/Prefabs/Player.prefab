@@ -23,7 +23,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002263108126789565}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d84f69faf76b7ac4f9e004cfbad918a9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b25e444c0c4d2aa4ee1521664ae8ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _outfit: {fileID: 11400000, guid: b5f6a9b0e700a984c992d57c6d4e2b09, type: 2}
+  _outfit: {fileID: 11400000, guid: 89682864519ebec48ba03ddd6b601b4c, type: 2}
   _bodyRenderer: {fileID: 8452087862317117190}
   _glowRenderer: {fileID: 7443880702007851404}
 --- !u!114 &6737214138608521735
