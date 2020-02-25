@@ -10,11 +10,11 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &422129887854332562
 CapsuleCollider:
@@ -72,6 +72,8 @@ MonoBehaviour:
     type: 3}
   _weaponTransform: {fileID: 7907080077402824088}
   _camera: {fileID: 0}
+  _cameraRotate: {fileID: 0}
+  _weaponIcon: {fileID: 0}
 --- !u!114 &2239566996534129091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,20 +137,6 @@ MonoBehaviour:
   _pistolAmmo: 0
   _uziAmmo: 0
   _sniperAmmo: 0
---- !u!114 &8878772452948890688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002263108126789565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe7dc3c68e259624aa396f5e23e3590f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
-  _speed: 0.1
 --- !u!1 &4963290698756526608
 GameObject:
   m_ObjectHideFlags: 0

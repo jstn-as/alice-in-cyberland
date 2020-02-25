@@ -1,6 +1,9 @@
 ﻿using System;
+using Cam;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace Player
 {
@@ -10,15 +13,19 @@ namespace Player
         [SerializeField] private InputActionReference _shootAction;
         [SerializeField] private Transform _weaponTransform;
         [SerializeField] private Transform _camera;
+        [SerializeField] private CameraRotate _cameraRotate;
+        [SerializeField] private WeaponIcon _weaponIcon;
         private Transform _projectileSpawn;
         private GameObject _weaponPrefab;
         private PlayerInventory _inventory;
         private float _timeSinceShot;
+        private bool _shootPressed;
         private void SwitchWeapon(int newWeapon)
         {
             Destroy(_weaponPrefab);
             _currentWeapon = newWeapon;
             var weapon = _inventory.GetWeapon(_currentWeapon);
+            _weaponIcon.SetSprite(weapon.GetSprite());
             _weaponPrefab = Instantiate(weapon.GetPrefab(), _weaponTransform.position, _weaponTransform.rotation, _weaponTransform);
             foreach (Transform child in _weaponPrefab.transform)
             {
@@ -41,20 +48,35 @@ namespace Player
 
         private void Awake()
         {
-            _shootAction.action.performed += delegate { Shoot(); };
+            _shootAction.action.performed += delegate { _shootPressed = true; };
+            _shootAction.action.canceled += delegate { _shootPressed = false; };
             _inventory = GetComponent<PlayerInventory>();
+        }
+
+        private void Start()
+        {
             SwitchWeapon(0);
         }
 
         private void Update()
         {
             _timeSinceShot += Time.deltaTime;
+            if (_shootPressed)
+            {
+                Shoot();
+            }
         }
         private void Shoot()
         {
             var weapon = _inventory.GetWeapon(_currentWeapon);
             if (_timeSinceShot < weapon.GetFireRate()) return;
             _timeSinceShot = 0;
+            // Add recoil.
+            var recoilRange = weapon.GetRecoil();
+            var recoilX = Random.Range(-recoilRange.x, recoilRange.x);
+            var recoilY = Random.Range(-recoilRange.y, recoilRange.y);
+            var recoil = new Vector2(recoilX, recoilY);
+            _cameraRotate.AddRecoil(recoil);
             // Spawn the projectile.
             var projectilePrefab = weapon.GetProjectile();
             var projectile = Instantiate(projectilePrefab, _projectileSpawn.position, Quaternion.identity);

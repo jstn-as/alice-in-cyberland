@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   _name: Pistol
-  _ammoType: 0
+  _fireRate: 0.5
+  _magSize: 10
   _prefab: {fileID: 1007550640474124952, guid: 1ecf7b8a63ff15c49b469cfe0b82fa2a, type: 3}
   _projectile: {fileID: 6352654455455336523, guid: d9ff09be47e65c24db10638eee4442d8,
     type: 3}
-  _damage: 1
-  _fireRate: 0.5
-  _magSize: 0
+  _sprite: {fileID: 21300000, guid: d5042422f67ed4840ace6db0bb310830, type: 3}

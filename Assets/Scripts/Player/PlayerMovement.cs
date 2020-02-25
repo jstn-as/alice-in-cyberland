@@ -88,8 +88,7 @@ namespace Player
             camForward.y = 0;
             camForward.Normalize();
             var forceZ =  _moveDirection.y * speedMultiplier * camForward;
-            var targetPosition = transform.position + forceX + forceZ;
-            _rb.MovePosition(targetPosition);
+            _rb.velocity = forceX + Vector3.up * _rb.velocity.y + forceZ;
             // Jump.
             if (_isJump && _jumpCount < _maxJumps)
             {

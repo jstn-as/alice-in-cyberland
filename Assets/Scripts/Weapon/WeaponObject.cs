@@ -6,11 +6,12 @@ namespace Weapon
     public class WeaponObject : ScriptableObject
     {
         [SerializeField] private string _name;
-        [SerializeField] private AmmoType _ammoType;
-        [SerializeField] private GameObject _prefab;
-        [SerializeField] private GameObject _projectile;
         [SerializeField] private float _fireRate;
         [SerializeField] private int _magSize;
+        [SerializeField] private Vector2 _recoil;
+        [SerializeField] private GameObject _prefab;
+        [SerializeField] private GameObject _projectile;
+        [SerializeField] private Sprite _sprite;
 
         public GameObject GetPrefab()
         {
@@ -25,6 +26,16 @@ namespace Weapon
         public float GetFireRate()
         {
             return _fireRate;
+        }
+
+        public Sprite GetSprite()
+        {
+            return _sprite;
+        }
+
+        public Vector2 GetRecoil()
+        {
+            return _recoil;
         }
     }
 }

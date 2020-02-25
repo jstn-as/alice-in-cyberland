@@ -25,10 +25,14 @@
             <e p="PlayerAnimation.cs" t="Include" />
             <e p="PlayerInventory.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
+            <e p="PlayerRotation.cs" t="Include" />
             <e p="PlayerWeapon.cs" t="Include" />
           </e>
           <e p="SyncRotate.cs" t="Include" />
           <e p="SyncYaw.cs" t="Include" />
+          <e p="UI" t="Include">
+            <e p="WeaponIcon.cs" t="Include" />
+          </e>
           <e p="Weapon" t="Include">
             <e p="AmmoType.cs" t="Include" />
             <e p="HeldType.cs" t="Include" />

@@ -6,7 +6,6 @@ namespace Player
     {
         [SerializeField] private GroundCheck _groundCheck;
         private CapsuleCollider _collider;
-        private SyncYaw _syncYaw;
         private Rigidbody _rb;
         private Vector2 _movement;
         private Animator _animator; 
@@ -49,7 +48,6 @@ namespace Player
             _rb = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
             _collider = GetComponent<CapsuleCollider>();
-            _syncYaw = GetComponent<SyncYaw>();
         }
 
         private void Start()
@@ -60,7 +58,6 @@ namespace Player
 
         private void Update()
         {
-            _syncYaw.enabled = true;
             // Standing.
             if (_groundCheck.IsGrounded())
             {
@@ -79,7 +76,6 @@ namespace Player
                 // Idle.
                 else
                 {
-                    _syncYaw.enabled = false;
                     SetTrigger(_isCrouching ? CIdle : Idle);
                 }
             }
