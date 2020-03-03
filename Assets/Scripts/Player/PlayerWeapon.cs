@@ -15,6 +15,7 @@ namespace Player
         [SerializeField] private Transform _camera;
         [SerializeField] private CameraRotate _cameraRotate;
         [SerializeField] private WeaponIcon _weaponIcon;
+        [SerializeField] private AmmoDisplay _ammoDisplay;
         private Transform _projectileSpawn;
         private GameObject _weaponPrefab;
         private PlayerInventory _inventory;
@@ -27,6 +28,9 @@ namespace Player
             var weapon = _inventory.GetWeapon(_currentWeapon);
             _weaponIcon.SetSprite(weapon.GetSprite());
             _weaponPrefab = Instantiate(weapon.GetPrefab(), _weaponTransform.position, _weaponTransform.rotation, _weaponTransform);
+            _inventory.SetAmmo(weapon.GetMagazineSize());
+            _ammoDisplay.UpdateAmmo(_inventory.GetAmmo());
+            _ammoDisplay.UpdateMaxAmmo(weapon.GetMagazineSize());
             foreach (Transform child in _weaponPrefab.transform)
             {
                 // Find a child transform with the right tag.
@@ -69,8 +73,11 @@ namespace Player
         private void Shoot()
         {
             var weapon = _inventory.GetWeapon(_currentWeapon);
+            if (_inventory.GetAmmo() <= 0) return;
             if (_timeSinceShot < weapon.GetFireRate()) return;
             _timeSinceShot = 0;
+            _inventory.ConsumeAmmo();
+            _ammoDisplay.UpdateAmmo(_inventory.GetAmmo());
             // Add recoil.
             var recoilRange = weapon.GetRecoil();
             var recoilX = Random.Range(-recoilRange.x, recoilRange.x);

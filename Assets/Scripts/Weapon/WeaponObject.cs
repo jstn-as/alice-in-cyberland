@@ -28,6 +28,10 @@ namespace Weapon
             return _fireRate;
         }
 
+        public int GetMagazineSize()
+        {
+            return _magSize;
+        }
         public Sprite GetSprite()
         {
             return _sprite;

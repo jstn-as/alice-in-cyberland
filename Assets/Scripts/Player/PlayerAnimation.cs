@@ -5,6 +5,8 @@ namespace Player
     public class PlayerAnimation : MonoBehaviour
     {
         [SerializeField] private GroundCheck _groundCheck;
+        [SerializeField] private Collider _standingCollider;
+        [SerializeField] private Collider _crouchingCollider;
         private CapsuleCollider _collider;
         private Rigidbody _rb;
         private Vector2 _movement;
@@ -70,12 +72,16 @@ namespace Player
                     }
                     else
                     {
+                        _crouchingCollider.enabled = _isCrouching;
+                        _standingCollider.enabled = !_isCrouching;
                         SetTrigger(_isCrouching ? CWalk : Walk);
                     }
                 }
                 // Idle.
                 else
                 {
+                    _crouchingCollider.enabled = _isCrouching;
+                    _standingCollider.enabled = !_isCrouching;
                     SetTrigger(_isCrouching ? CIdle : Idle);
                 }
             }

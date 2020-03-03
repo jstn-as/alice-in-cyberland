@@ -26,10 +26,24 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: d84f69faf76b7ac4f9e004cfbad918a9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
+  m_Radius: 0.4
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!136 &7158887085846290842
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002263108126789565}
+  m_Material: {fileID: 13400000, guid: d84f69faf76b7ac4f9e004cfbad918a9, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.3
+  m_Height: 0.9
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!114 &1921424811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464bac1b34ea51c44b73b0fe85e41bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: {x: 1.5, y: 300}
+  _speed: {x: 90, y: 300}
   _sprintModifier: 3
   _maxJumps: 1
   _cameraTransform: {fileID: 0}
@@ -74,6 +88,7 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _cameraRotate: {fileID: 0}
   _weaponIcon: {fileID: 0}
+  _ammoDisplay: {fileID: 0}
 --- !u!114 &2239566996534129091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,8 +105,9 @@ MonoBehaviour:
     type: 3}
   _offset: {x: 0, y: 45, z: 0}
   _camera: {fileID: 0}
-  _speed: 0.1
+  _speed: 0.2
   _playerWeapon: {fileID: 856964574785121801}
+  _fovMultiplier: 0.5
 --- !u!114 &2561459526697527878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundCheck: {fileID: 401905763598265537}
+  _standingCollider: {fileID: 422129887854332562}
+  _crouchingCollider: {fileID: 7158887085846290842}
 --- !u!114 &3138513211957933324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,9 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapon0: {fileID: 11400000, guid: 002c646d8d18a964ba8cd37bfbe61586, type: 2}
   _weapon1: {fileID: 0}
-  _pistolAmmo: 0
-  _uziAmmo: 0
-  _sniperAmmo: 0
+  _weaponAmmo: 0
 --- !u!1 &4963290698756526608
 GameObject:
   m_ObjectHideFlags: 0

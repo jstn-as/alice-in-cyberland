@@ -7,9 +7,11 @@ namespace Player
     {
         [SerializeField] private InputActionReference _aimAction;
         [SerializeField] private Vector3 _offset;
-        [SerializeField] private Transform _camera;
+        [SerializeField] private Camera _camera;
         [SerializeField, Range(0, 1)] private float _speed;
         [SerializeField] private PlayerWeapon _playerWeapon;
+        [SerializeField] private float _fovMultiplier;
+        private float _normalFov;
         private Quaternion _currentRotation;
         private bool _isAiming;
         private Animator _animator;
@@ -33,10 +35,13 @@ namespace Player
             _animator = GetComponent < Animator>();
             _animLayerIndex = _animator.GetLayerIndex("Upper Body");
             _chest = _animator.GetBoneTransform(HumanBodyBones.Chest);
+            _normalFov = _camera.fieldOfView;
         }
 
         private void LateUpdate()
         {
+            var targetFov = _isAiming ? _normalFov * _fovMultiplier : _normalFov;
+            _camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, targetFov, 0.1f);
             if (!_isAiming)
             {
                 _animator.SetLayerWeight(_animLayerIndex, 0);
@@ -44,7 +49,7 @@ namespace Player
                 return;
             }
             _animator.SetLayerWeight(_animLayerIndex, 1);
-            var targetRotation = _camera.rotation * Quaternion.Euler(_offset);
+            var targetRotation = _camera.transform.rotation * Quaternion.Euler(_offset);
             _currentRotation = Quaternion.Lerp(_currentRotation, targetRotation, _speed);
             _chest.rotation = _currentRotation;
         }
