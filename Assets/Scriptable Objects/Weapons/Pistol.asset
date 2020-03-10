@@ -15,7 +15,9 @@ MonoBehaviour:
   _name: Pistol
   _fireRate: 0.5
   _magSize: 10
+  _recoil: {x: 1, y: 1}
   _prefab: {fileID: 1007550640474124952, guid: 1ecf7b8a63ff15c49b469cfe0b82fa2a, type: 3}
   _projectile: {fileID: 6352654455455336523, guid: d9ff09be47e65c24db10638eee4442d8,
     type: 3}
-  _sprite: {fileID: 21300000, guid: d5042422f67ed4840ace6db0bb310830, type: 3}
+  _weaponIcon: {fileID: 21300000, guid: d5042422f67ed4840ace6db0bb310830, type: 3}
+  _crosshair: {fileID: 21300000, guid: 06c7eb47be5e2094abfd241878ce0579, type: 3}

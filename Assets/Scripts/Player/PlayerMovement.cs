@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cam;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player
@@ -14,6 +15,7 @@ namespace Player
         [SerializeField] private InputActionReference _sprintAction;
         [SerializeField] private InputActionReference _crouchAction;
         [SerializeField] private GroundCheck _groundCheck;
+        [SerializeField] private FovManager _fovManager;
         private int _jumpCount;
         private bool _isRunning;
         private bool _isJump;
@@ -64,6 +66,7 @@ namespace Player
         {
             _isRunning = newSprint;
             _playerAnimation.SetRunning(_isRunning);
+            _fovManager.SetRunning(_isRunning);
         }
 
         private void SetCrouch(bool newCrouch)

@@ -10,6 +10,7 @@
         <e p="Scripts" t="Include">
           <e p="Cam" t="Include">
             <e p="CameraRotate.cs" t="Include" />
+            <e p="FovManager.cs" t="Include" />
             <e p="TransformFollow.cs" t="Include" />
           </e>
           <e p="CursorLock.cs" t="Include" />
@@ -32,6 +33,7 @@
           <e p="SyncYaw.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="AmmoDisplay.cs" t="Include" />
+            <e p="CrosshairDisplay.cs" t="Include" />
             <e p="WeaponIcon.cs" t="Include" />
           </e>
           <e p="Weapon" t="Include">

@@ -1,5 +1,4 @@
-﻿using System;
-using Cam;
+﻿using Cam;
 using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,13 +8,14 @@ namespace Player
 {
     public class PlayerWeapon : MonoBehaviour
     {
-        [SerializeField] private int _currentWeapon;
         [SerializeField] private InputActionReference _shootAction;
+        [SerializeField] private InputActionReference _reloadAction;
         [SerializeField] private Transform _weaponTransform;
         [SerializeField] private Transform _camera;
         [SerializeField] private CameraRotate _cameraRotate;
         [SerializeField] private WeaponIcon _weaponIcon;
         [SerializeField] private AmmoDisplay _ammoDisplay;
+        [SerializeField] private CrosshairDisplay _crosshairDisplay;
         private Transform _projectileSpawn;
         private GameObject _weaponPrefab;
         private PlayerInventory _inventory;
@@ -24,13 +24,14 @@ namespace Player
         private void SwitchWeapon(int newWeapon)
         {
             Destroy(_weaponPrefab);
-            _currentWeapon = newWeapon;
-            var weapon = _inventory.GetWeapon(_currentWeapon);
-            _weaponIcon.SetSprite(weapon.GetSprite());
+            _inventory.SetCurrentWeapon(newWeapon);
+            var weapon = _inventory.GetCurrentWeapon();
+            _weaponIcon.SetSprite(weapon.GetWeaponIcon());
             _weaponPrefab = Instantiate(weapon.GetPrefab(), _weaponTransform.position, _weaponTransform.rotation, _weaponTransform);
             _inventory.SetAmmo(weapon.GetMagazineSize());
             _ammoDisplay.UpdateAmmo(_inventory.GetAmmo());
             _ammoDisplay.UpdateMaxAmmo(weapon.GetMagazineSize());
+            _crosshairDisplay.SetCrosshair(weapon.GetCrosshair());
             foreach (Transform child in _weaponPrefab.transform)
             {
                 // Find a child transform with the right tag.
@@ -72,7 +73,7 @@ namespace Player
         }
         private void Shoot()
         {
-            var weapon = _inventory.GetWeapon(_currentWeapon);
+            var weapon = _inventory.GetCurrentWeapon();
             if (_inventory.GetAmmo() <= 0) return;
             if (_timeSinceShot < weapon.GetFireRate()) return;
             _timeSinceShot = 0;
@@ -81,7 +82,7 @@ namespace Player
             // Add recoil.
             var recoilRange = weapon.GetRecoil();
             var recoilX = Random.Range(-recoilRange.x, recoilRange.x);
-            var recoilY = Random.Range(-recoilRange.y, recoilRange.y);
+            var recoilY = Random.Range(0, recoilRange.y);
             var recoil = new Vector2(recoilX, recoilY);
             _cameraRotate.AddRecoil(recoil);
             // Spawn the projectile.

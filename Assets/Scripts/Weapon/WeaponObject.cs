@@ -11,7 +11,8 @@ namespace Weapon
         [SerializeField] private Vector2 _recoil;
         [SerializeField] private GameObject _prefab;
         [SerializeField] private GameObject _projectile;
-        [SerializeField] private Sprite _sprite;
+        [SerializeField] private Sprite _weaponIcon;
+        [SerializeField] private Sprite _crosshair;
 
         public GameObject GetPrefab()
         {
@@ -32,11 +33,15 @@ namespace Weapon
         {
             return _magSize;
         }
-        public Sprite GetSprite()
+        public Sprite GetWeaponIcon()
         {
-            return _sprite;
+            return _weaponIcon;
         }
 
+        public Sprite GetCrosshair()
+        {
+            return _crosshair;
+        }
         public Vector2 GetRecoil()
         {
             return _recoil;

@@ -5,8 +5,14 @@ namespace Player
 {
     public class PlayerInventory : MonoBehaviour
     {
+        [SerializeField] private int _currentWeapon;
         [SerializeField] private WeaponObject _weapon0, _weapon1;
         [SerializeField] private int _weaponAmmo;
+
+        public void SetCurrentWeapon(int currentWeapon)
+        {
+            _currentWeapon = currentWeapon;
+        }
         
         public int GetAmmo()
         {
@@ -22,9 +28,9 @@ namespace Player
         {
             _weaponAmmo = newAmmo;
         }
-        public WeaponObject GetWeapon(int slot)
+        public WeaponObject GetCurrentWeapon()
         {
-            return slot == 0 ? _weapon0 : _weapon1;
+            return _currentWeapon == 0 ? _weapon0 : _weapon1;
         }
     }
 }
