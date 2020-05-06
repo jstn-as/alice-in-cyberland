@@ -62,7 +62,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Shoot",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "a5881568-9b78-42e9-9127-4f006e848d49",
                     "expectedControlType": "",
@@ -73,6 +73,14 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "69e5d913-452a-489a-b218-06c9d90983d7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "1e4873f8-e594-4f33-941d-89900c843b84",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -207,7 +215,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "Shoot",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -219,6 +227,17 @@
                     "processors": "",
                     "groups": "Keyboard & Mouse",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36ef81c2-c60b-41a8-ac59-9e60b049b20d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

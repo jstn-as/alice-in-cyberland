@@ -7,6 +7,7 @@ namespace UI
     {
         [SerializeField] private Text _ammoText;
         [SerializeField] private Text _magazineText;
+        [SerializeField] private GameObject _boxText;
 
         public void UpdateAmmo(int newAmmo)
         {
@@ -16,6 +17,11 @@ namespace UI
         public void UpdateMaxAmmo(int newMaxAmmo)
         {
             _magazineText.text = $"{newMaxAmmo}";
+        }
+
+        public void SetVisible(bool visible)
+        {
+            _boxText.SetActive(visible);
         }
     }
 }

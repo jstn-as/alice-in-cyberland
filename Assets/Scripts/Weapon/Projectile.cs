@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Character;
 using UnityEngine;
 
 namespace Weapon
@@ -20,9 +20,7 @@ namespace Weapon
         {
             _lifetime += Time.deltaTime;
             if (_lifetime > _maxLifetime)
-            {
                 Destroy(gameObject);
-            }
             _rb.velocity = transform.forward * _speed;
         }
 
@@ -30,8 +28,8 @@ namespace Weapon
         {
             if (other.CompareTag("Enemy"))
             {
-                var health = other.GetComponent<Health>();
-                health.ChangeHealth(-_damage);
+                var health = other.GetComponent<CharacterHealth>();
+                health.Damage(_damage);
             }
             Destroy(gameObject);
         }

@@ -15,6 +15,12 @@ namespace UI
         {
             _weaponImage.sprite = image;
             _weaponImage.SetNativeSize();
+            SetVisible(true);
+        }
+
+        public void SetVisible(bool visible)
+        {
+            _weaponImage.enabled = visible;
         }
     }
 }

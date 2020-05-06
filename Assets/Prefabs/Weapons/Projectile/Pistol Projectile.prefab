@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol Projectile
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 93375713b9d6e4a4ab7099069b571d4d, type: 3}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 93375713b9d6e4a4ab7099069b571d4d, type: 3}
       propertyPath: m_IsActive
       value: 0
