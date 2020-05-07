@@ -10,6 +10,8 @@ namespace Character
         [SerializeField] private float _invincibilityTime;
         [SerializeField] private AnimationCurve _glowCurve;
         [SerializeField] private Renderer _glowRenderer;
+        [SerializeField] private AudioClip _hurtSound;
+        private AudioSource _audioSource;
         private float _timeSinceHit;
         private static readonly int HealthId = Shader.PropertyToID("_Health");
 
@@ -23,7 +25,7 @@ namespace Character
             return _currentHealth;
         }
 
-        private void ChangeHealth(int amount)
+        public void ChangeHealth(int amount)
         {
             _currentHealth += amount;
             _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
@@ -33,28 +35,27 @@ namespace Character
             var material = _glowRenderer.material;
             var healthPercentage = _currentHealth / (float)_maxHealth;
             var glow = _glowCurve.Evaluate(healthPercentage);
-            print(glow);
             material.SetFloat(HealthId, glow);
         }
-
         public void Damage(int amount)
         {
             // Ignore if hit too soon.
             if (_timeSinceHit < _invincibilityTime)
                 return;
+            _audioSource.PlayOneShot(_hurtSound);
             // Reset the invincibility timer.
             _timeSinceHit = 0;
             ChangeHealth(-amount);
         }
 
-        private void Die()
+        protected virtual void Die()
         {
-            print("Die");
             Destroy(gameObject);
         }
 
         private void Start()
         {
+            _audioSource = GetComponent<AudioSource>();
             ChangeHealth(0);
         }
 

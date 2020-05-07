@@ -10,11 +10,19 @@ namespace Character.Player
         [SerializeField] private InputActionReference _interactAction;
         [SerializeField] private GameObject _interactUi;
         [SerializeField] private Transform _camera;
+        [SerializeField] private AudioClip _interactSound;
+        private AudioSource _audioSource;
         private IPlayerInteractable _interactable;
 
         private void Awake()
         {
-            _interactAction.action.performed += context => { Interact(); };
+            _audioSource = GetComponent<AudioSource>();
+            _interactAction.action.performed += OnInteract;
+        }
+
+        private void OnInteract(InputAction.CallbackContext obj)
+        {
+            Interact();
         }
 
         private void OnEnable()
@@ -43,7 +51,11 @@ namespace Character.Player
 
         private void Interact()
         {
-            _interactable?.Interact(gameObject);
+            // Skip if no interactable selected.
+            if (_interactable == null)
+                return;
+            _audioSource.PlayOneShot(_interactSound);
+            _interactable.Interact(gameObject);
         }
     }
 }

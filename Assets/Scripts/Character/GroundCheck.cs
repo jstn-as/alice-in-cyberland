@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Character
@@ -6,9 +7,12 @@ namespace Character
     public class GroundCheck : MonoBehaviour
     {
         private readonly List<Collider> _collidedObjects = new List<Collider>();
+        private float _suppressTime;
 
         public bool IsGrounded()
         {
+            if (_suppressTime > 0)
+                return false;
             return _collidedObjects.Count > 0;
         }
         private void OnTriggerEnter(Collider other)
@@ -23,9 +27,14 @@ namespace Character
             _collidedObjects.Remove(other);
         }
 
-        public void Clear()
+        public void Suppress(float time)
         {
-            _collidedObjects.Clear();
+            _suppressTime = time;
+        }
+
+        private void Update()
+        {
+            _suppressTime -= Time.deltaTime;
         }
     }
 }

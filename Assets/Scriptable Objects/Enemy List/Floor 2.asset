@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc305e7234644f9851294654ea92c92, type: 3}
+  m_Name: Floor 2
+  m_EditorClassIdentifier: 
+  _enemies:
+  - {fileID: 2418932455063400757, guid: cd202ccf57025394ca63ec7141de64f9, type: 3}
+  - {fileID: 2418932455063400757, guid: cd202ccf57025394ca63ec7141de64f9, type: 3}

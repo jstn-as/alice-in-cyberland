@@ -1,4 +1,5 @@
-﻿using Cam;
+﻿using System;
+using Cam;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,6 +27,13 @@ namespace Character.Player
             _aimAction.action.performed += OnAim;
             _aimAction.action.canceled += OnAim;
         }
+
+        private void OnDestroy()
+        {
+            _aimAction.action.performed -= OnAim;
+            _aimAction.action.canceled -= OnAim;
+        }
+
         private void OnAim(InputAction.CallbackContext obj)
         {
             SetAim(obj.performed);

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Character.Player
 {
-    public class PlayerWeapon :CharacterWeapon
+    public class PlayerWeapon : CharacterWeapon
     {
         [SerializeField] private InputActionReference _attackAction;
         [SerializeField] private InputActionReference _switchAction;
@@ -41,10 +41,13 @@ namespace Character.Player
             var position = _camera.position;
             var ray = new Ray(position, forward);
             TargetPoint = position + forward * 100;
-            if (Physics.Raycast(ray, out var hit, 100f))
+            var layerMask = LayerMask.GetMask("Player");
+            if (Physics.Raycast(ray, out var hit, 100f, layerMask))
             {
                 TargetPoint = hit.point;
             }
+            // Update the ammo ui.
+            _ammoDisplay.UpdateAmmo(Inventory.GetAmmo());
             base.Shoot();
         }
         public override bool SwitchWeapon(int newWeaponIndex)

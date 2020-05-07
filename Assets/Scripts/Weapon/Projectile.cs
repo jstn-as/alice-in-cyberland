@@ -26,11 +26,10 @@ namespace Weapon
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Enemy"))
-            {
-                var health = other.GetComponent<CharacterHealth>();
+            var health = other.GetComponent<CharacterHealth>();
+            // Only damage the object if it has a health component.
+            if (health)
                 health.Damage(_damage);
-            }
             Destroy(gameObject);
         }
     }

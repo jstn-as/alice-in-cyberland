@@ -5,10 +5,11 @@ namespace Character
     public class CharacterAnimation : MonoBehaviour
     {
         [SerializeField] private GroundCheck _groundCheck;
-        private readonly Vector3 _offset = Vector3.up * 50;
+        private readonly Vector3 _offset = Vector3.up * 40;
         [SerializeField, Range(0, 1)] private float _speed;
         [SerializeField] private Transform _aimForward;
         [SerializeField] private GameObject _fist;
+        private Vector2 _movementInput;
         protected bool IsCrouching;
         protected bool IsAiming;
         private CharacterWeapon _characterWeapon;
@@ -53,12 +54,16 @@ namespace Character
         }
         public void Reload()
         {
+            // Return if already reloading.
+            if (_isReloading)
+                return;
             _isReloading = true;
             _animator.SetTrigger(ReloadHash);
         }
-        public void ReloadFinish()
+        public void StopReloading()
         {
             _isReloading = false;
+            
         }
         public void Punch()
         {
@@ -75,8 +80,19 @@ namespace Character
             _timeSincePunch = 0;
         }
 
+        public void SetMovementInput(Vector2 movementInput)
+        {
+            _movementInput = movementInput;
+        }
+
         public void SetAim(bool isAiming)
         {
+            // Only update if changed.
+            if (IsAiming == isAiming)
+                return;
+            // Ignore if reloading.
+            if (_isReloading)
+                return;
             IsAiming = isAiming;
             // Set the idle to fists if no weapon is equipped.
             var weaponEquipped = _characterWeapon.GetCurrentWeapon();
@@ -91,10 +107,6 @@ namespace Character
             _animator = GetComponent<Animator>();
             _animLayerIndex = _animator.GetLayerIndex("Upper Body");
             _chest = _animator.GetBoneTransform(HumanBodyBones.Chest);
-        }
-        private void Start()
-        {
-            // _animator.SetTrigger(Fall);
             _animator.SetTrigger(Idle);
         }
         protected virtual void FixedUpdate()
@@ -107,9 +119,7 @@ namespace Character
             if (_groundCheck.IsGrounded())
             {
                 // Moving.
-                var horizontalVelocity = _rb.velocity;
-                horizontalVelocity.y = 0;
-                if (horizontalVelocity.magnitude > 0.1)
+                if (_movementInput.magnitude > 0.1f)
                 {
                     if (_isRunning)
                         SetTrigger(Run);

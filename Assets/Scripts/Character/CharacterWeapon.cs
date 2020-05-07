@@ -1,5 +1,4 @@
-﻿using Character.Player;
-using UnityEngine;
+﻿using UnityEngine;
 using Weapon;
 
 namespace Character
@@ -7,15 +6,17 @@ namespace Character
     public class CharacterWeapon : MonoBehaviour
     {
         [SerializeField] private Transform _weaponTransform;
+        [SerializeField] private AudioClip _attackSound;
         protected Vector3 TargetPoint;
         protected WeaponObject CurrentWeapon;
+        protected CharacterInventory Inventory;
+        protected CharacterAnimation CharacterAnimation;
         protected bool IsAttacking;
-        private CharacterAnimation _characterAnimation;
+        private float _timeSinceShot;
         private Transform _projectileSpawn;
         private GameObject _weaponPrefab;
-        private CharacterInventory _inventory;
-        private PlayerReload _playerReload;
-        private float _timeSinceShot;
+        private CharacterReload _characterReload;
+        private AudioSource _audioSource;
 
         public WeaponObject GetCurrentWeapon()
         {
@@ -23,16 +24,17 @@ namespace Character
         }
         protected virtual void Awake()
         {
-            _playerReload = GetComponent<PlayerReload>();
-            _inventory = GetComponent<CharacterInventory>();
-            _characterAnimation = GetComponent<CharacterAnimation>();
+            _audioSource = GetComponent<AudioSource>();
+            _characterReload = GetComponent<CharacterReload>();
+            Inventory = GetComponent<CharacterInventory>();
+            CharacterAnimation = GetComponent<CharacterAnimation>();
         }
-        private void Start()
+        protected virtual void Start()
         {
             SwitchWeapon(0);
             if (CurrentWeapon)
             {
-                _playerReload.ReloadFinish();
+                _characterReload.ReloadFinish();
             }
             enabled = false;
         }
@@ -52,20 +54,25 @@ namespace Character
         }
         private void Punch()
         {
-            if (!_characterAnimation.IsPunching())
-            {
-                _characterAnimation.Punch();
-            }
+            // Skip if already punching.
+            if (CharacterAnimation.IsPunching())
+                return;
+            _audioSource.PlayOneShot(_attackSound);
+            CharacterAnimation.Punch();
         }
         protected virtual void Shoot()
         {
             // Don't shoot if reloading.
-            if (_characterAnimation.IsReloading()) return;
+            if (CharacterAnimation.IsReloading())
+                return;
             // Don't shoot if out of ammo.
-            if (_inventory.GetAmmo() <= 0) return;
-            if (_timeSinceShot < CurrentWeapon.GetFireRate()) return;
+            if (Inventory.GetAmmo() <= 0)
+                return;
+            if (_timeSinceShot < CurrentWeapon.GetFireRate())
+                return;
+            _audioSource.PlayOneShot(_attackSound);
             _timeSinceShot = 0;
-            _inventory.ConsumeAmmo();
+            Inventory.ConsumeAmmo();
             // // Add recoil.
             // var recoilRange = weapon.GetRecoil();
             // var recoilX = Random.Range(-recoilRange.x, recoilRange.x);
@@ -81,7 +88,7 @@ namespace Character
         public virtual bool SwitchWeapon(int newWeaponIndex)
         {
             Destroy(_weaponPrefab);
-            CurrentWeapon = _inventory.GetWeapon(newWeaponIndex);
+            CurrentWeapon = Inventory.GetWeapon(newWeaponIndex);
             // Case if no weapon is equipped.
             if (!CurrentWeapon)
                 return false;

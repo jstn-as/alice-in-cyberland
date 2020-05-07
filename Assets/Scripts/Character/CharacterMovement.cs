@@ -1,5 +1,4 @@
-﻿using Character.Player;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Character
 {
@@ -16,18 +15,19 @@ namespace Character
         private bool _isCrouching;
         private Rigidbody _rb;
         private Vector2 _moveDirection;
-        private CharacterAnimation _playerAnimation;
+        private CharacterAnimation _animation;
 
         protected virtual void Awake()
         {
             _rb = GetComponent<Rigidbody>();
-            _playerAnimation = GetComponent<CharacterAnimation>();
+            _animation = GetComponent<CharacterAnimation>();
         }
 
 
         protected void Move(Vector2 direction)
         {
             _moveDirection = direction;
+            _animation.SetMovementInput(_moveDirection);
         }
 
         protected void SetJump(bool isJump)
@@ -36,14 +36,17 @@ namespace Character
         }
         protected virtual void SetSprint(bool newSprint)
         {
+            // Return if not changing.
+            if (_isRunning == newSprint)
+                return;
             _isRunning = newSprint;
-            _playerAnimation.SetRunning(_isRunning);
+            _animation.SetRunning(_isRunning);
         }
 
         protected void SetCrouch(bool newCrouch)
         {
             _isCrouching = newCrouch;
-            _playerAnimation.SetCrouching(_isCrouching);
+            _animation.SetCrouching(_isCrouching);
         }
 
         protected virtual void FixedUpdate()
@@ -67,8 +70,8 @@ namespace Character
             if (_isJump && _jumpCount < _maxJumps)
             {
                 _jumpCount++;
-                _groundCheck.Clear();
                 _isCrouching = false;
+                _groundCheck.Suppress(1);
                 var velocity = _rb.velocity;
                 velocity = Vector3.right * velocity.x + Vector3.forward * velocity.z;
                 _rb.velocity = velocity;

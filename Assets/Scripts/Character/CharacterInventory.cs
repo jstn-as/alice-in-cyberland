@@ -9,8 +9,8 @@ namespace Character
     {
         [SerializeField] private int _weaponAmmo;
         [SerializeField] private List<WeaponObject> _weapons;
-        private PlayerWeapon _playerWeapon;
-        private PlayerReload _playerReload;
+        private CharacterWeapon _characterWeapon;
+        private CharacterReload _characterReload;
 
         public int GetAmmo()
         {
@@ -34,22 +34,26 @@ namespace Character
 
         private void Awake()
         {
-            _playerWeapon = GetComponent<PlayerWeapon>();
-            _playerReload = GetComponent<PlayerReload>();
+            _characterWeapon = GetComponent<PlayerWeapon>();
+            _characterReload = GetComponent<CharacterReload>();
         }
 
         public bool AddWeapon(WeaponObject weapon)
         {
-            for (var i = 0; i < _weapons.Count; i++)
-            {
-                if (_weapons[i] != null) continue;
-                _weapons[i] = weapon;
-                _playerWeapon.SwitchWeapon(i);
-                _playerReload.Reload();
-                return true;
-            }
-
-            return false;
+            // for (var i = 0; i < _weapons.Count; i++)
+            // {
+            //     if (_weapons[i] != null) continue;
+            //     _weapons[i] = weapon;
+            //     _playerWeapon.SwitchWeapon(i);
+            //     _characterReload.Reload();
+            //     return true;
+            // }
+            //
+            // return false;
+            _weapons[0] = weapon;
+            _characterWeapon.SwitchWeapon(0);
+            _characterReload.Reload();
+            return true;
         }
     }
 }

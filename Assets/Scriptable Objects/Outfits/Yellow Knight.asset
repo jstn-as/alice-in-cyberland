@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a1acce0d9d438ea574ec7e9c450144, type: 3}
+  m_Name: Yellow Knight
+  m_EditorClassIdentifier: 
+  _bodyMaterial: {fileID: 2100000, guid: d25db7313937c5942b26770f152a4ba4, type: 2}
+  _glowMaterial: {fileID: 2100000, guid: 8d6e13e834d5ed747a570deb559dfcb5, type: 2}

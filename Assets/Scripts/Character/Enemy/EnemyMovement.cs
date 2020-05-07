@@ -4,11 +4,26 @@ namespace Character.Enemy
 {
     public class EnemyMovement : CharacterMovement
     {
-        [SerializeField] private Transform _player;
+        private Transform _player;
+        private PlayerFinder _playerFinder;
         [SerializeField] private float _walkDistance, _runDistance;
 
-        protected override void FixedUpdate()
+        protected override void Awake()
         {
+            _playerFinder = GetComponent<PlayerFinder>();
+            base.Awake();
+        }
+
+        private void Start()
+        {
+            _player = _playerFinder.GetPlayer();
+        }
+
+        private void Update()
+        {
+            // Skip if the player is missing.
+            if (!_player)
+                return;
             // Move towards the player.
             var distance = Vector3.Distance(transform.position, _player.position);
             if (distance >= _runDistance)

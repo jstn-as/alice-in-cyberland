@@ -8,7 +8,7 @@ namespace Character
         protected Vector3 TargetAngle;
         protected Rigidbody Rb;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             Rb = GetComponent<Rigidbody>();
             Rb.velocity = Vector3.zero;

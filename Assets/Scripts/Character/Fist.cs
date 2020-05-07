@@ -18,7 +18,6 @@ namespace Character
                     return;
             }
             // Deal damage.
-            print("Collision");
             healthScript.Damage(_damage);
         }
     }

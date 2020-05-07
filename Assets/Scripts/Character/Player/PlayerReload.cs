@@ -4,13 +4,10 @@ using UnityEngine.InputSystem;
 
 namespace Character.Player
 {
-    public class PlayerReload : MonoBehaviour
+    public class PlayerReload : CharacterReload
     {
         [SerializeField] private InputActionReference _reloadAction;
         [SerializeField] private AmmoDisplay _ammoDisplay;
-        private CharacterInventory _inventory;
-        private PlayerWeapon _playerWeapon;
-        private PlayerAnimation _playerAnimation;
 
         private void OnEnable()
         {
@@ -27,27 +24,16 @@ namespace Character.Player
             Reload();
         }
 
-        private void Awake()
+        protected override void Awake()
         {
-            _inventory = GetComponent<CharacterInventory>();
-            _playerWeapon = GetComponent<PlayerWeapon>();
-            _playerAnimation = GetComponent<PlayerAnimation>();
+            base.Awake();
             _reloadAction.action.performed += OnReload;
         }
 
-        public void ReloadFinish()
+        public override void ReloadFinish()
         {
-            var currentWeapon = _playerWeapon.GetCurrentWeapon();
-            _inventory.SetAmmo(currentWeapon.GetMagazineSize());
-            _ammoDisplay.UpdateAmmo(_inventory.GetAmmo());
-            _playerAnimation.ReloadFinish();
-        }
-        
-        public void Reload()
-        {
-            // Only reload if a weapon is equipped.
-            if (!_playerWeapon.GetCurrentWeapon()) return;
-            _playerAnimation.Reload();
+            base.ReloadFinish();
+            _ammoDisplay.UpdateAmmo(Inventory.GetAmmo());
         }
     }
 }

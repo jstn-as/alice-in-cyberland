@@ -4,9 +4,23 @@ namespace Character.Enemy
 {
     public class EnemyRotation : CharacterRotation
     {
-        [SerializeField] private Transform _player;
+        private Transform _player;
+        private PlayerFinder _playerFinder;
+        protected override void Awake()
+        {
+            _playerFinder = GetComponent<PlayerFinder>();
+            base.Awake();
+        }
+
+        private void Start()
+        {
+            _player = _playerFinder.GetPlayer();
+        }
+
         protected override void Update()
         {
+            if (!_player)
+                return;
             var playerPosition = _player.position;
             playerPosition.y = 0;
             var position = transform.position;
